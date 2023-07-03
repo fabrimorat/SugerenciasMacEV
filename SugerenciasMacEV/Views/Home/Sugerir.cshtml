@@ -1,0 +1,20 @@
+﻿@model SugerenciasMacEV.Models.Modelo
+
+@if (Model != null)
+{
+    <h1>¡Esta es la mejor opción!</h1>
+    <p>Visítenos en nuestra página web si desea adquirirla: www.motoelectricos.com</p>
+
+    <p>La mejor sugerencia en base a su recorrido diario y peso necesitado es:</p>
+    <p>Serie: @Model.Serie</p>
+    <p>Nombre del Modelo: @Model.NombreModelo</p>
+    <p>Autonomía: @Model.Autonomia</p>
+    <p>Motor: @Model.Motor</p>
+    <p>Peso Soportable: @Model.PesoSoportado</p>
+}
+else
+{
+    <h1>Lo sentimos, no contamos con un modelo que se ajuste a tus necesidades</h1>
+}
+
+<a href="@Url.Action("MostrarInformes", "Home")" class="btn btn-primary">Ver Reportes</a>

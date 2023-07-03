@@ -1,0 +1,49 @@
+﻿@model List<Informe>
+
+<h2>Informes</h2>
+
+@using (Html.BeginForm("MostrarInformes", "Home", FormMethod.Get))
+{
+    <div>
+        <label for="fechaInicio">Fecha de inicio:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" required>
+    </div>
+
+    <div>
+        <label for="fechaFin">Fecha de fin:</label>
+        <input type="date" id="fechaFin" name="fechaFin" required>
+    </div>
+
+    <button type="submit">Mostrar reportes</button>
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Resultado</th>
+                <th>Detalles</th>
+                <th>ModeloId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var informe in Model)
+            {
+                <tr>
+                    <td>@informe.Fecha.ToShortDateString()</td>
+                    <td>@informe.Resultado</td>
+                    <td>@informe.Detalles</td>
+                    <td>@informe.ModeloId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No hay reportes disponibles.</p>
+}
+
+<a href="@Url.Action("Index", "Home")">Volver</a>

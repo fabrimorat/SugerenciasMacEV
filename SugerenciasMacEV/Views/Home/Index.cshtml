@@ -1,0 +1,90 @@
+﻿@model List<SugerenciasMacEV.Models.Modelo>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MacEV - Sugerencia de Moto Eléctrica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+
+            .button:hover {
+                background-color: #0056b3;
+            }
+
+        .model-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+            .model-list li {
+                font-size: 20px;
+                margin-bottom: 10px;
+                padding: 10px;
+                background-color: #f7f7f7;
+                border-radius: 4px;
+                border: 1px solid #e5e5e5;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido a MacEV</h1>
+        <p>Gracias por preferirnos. Presiona el siguiente botón para obtener la mejor sugerencia de moto eléctrica.</p>
+        <a class="button" href="/Home/IngresarDatos">Ingresar mis datos para la sugerencia</a>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            <h2>Modelos en stock:</h2>
+            <ul class="model-list">
+                @foreach (var modelo in Model)
+                {
+                    <li>@modelo.NombreModelo</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No hay modelos disponibles en stock.</p>
+        }
+    </div>
+</body>
+</html>

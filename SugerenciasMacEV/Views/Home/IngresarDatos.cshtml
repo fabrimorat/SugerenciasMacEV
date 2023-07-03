@@ -1,0 +1,29 @@
+﻿@model IEnumerable<SugerenciasMacEV.Models.Modelo>
+
+<h1>Por favor ingrese los siguientes datos para obtener la mejor sugerencia de moto eléctrica</h1>
+<p>Recuerde que el recorrido es en kilómetros y el peso en kilogramos</p>
+
+<form method="post" asp-action="Sugerir">
+    <div class="form-group">
+        <label for="recorridoDiario">Recorrido Diario:</label>
+        <input type="number" class="form-control" name="recorridoDiario" id="recorridoDiario" required>
+    </div>
+    <div class="form-group">
+        <label for="pesoNecesitado">Peso Necesitado:</label>
+        <input type="number" class="form-control" name="pesoNecesitado" id="pesoNecesitado" required>
+    </div>
+    <div class="form-group">
+        <label for="modeloId">Modelo:</label>
+        <select class="form-control" name="modeloId" id="modeloId" required>
+            <option value="">Seleccione un modelo</option>
+            @foreach (var modelo in Model)
+            {
+                <option value="@modelo.ModeloId">@modelo.NombreModelo</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Obtener Sugerencia</button>
+</form>
+
+
+<a href="@Url.Action("Index", "Home")">Volver</a>
