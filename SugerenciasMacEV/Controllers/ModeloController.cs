@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using SugerenciasMacEV.Services;
 
 [ApiController]
-[Route("api/modelo")]
+[Route("api/informe")]
+
+[EnableCors("AllowOrigin")]
 public class ModeloController : ControllerBase
 {
     private readonly ISugerenciaService _sugerenciaService;
@@ -13,9 +16,9 @@ public class ModeloController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetModelos()
+    public IActionResult GetInformes()
     {
-        var modelos = _sugerenciaService.ObtenerMotosEnStock();
-        return Ok(modelos);
+        var informes = _sugerenciaService.ObtenerInformesEnStock();
+        return Ok(informes);
     }
 }

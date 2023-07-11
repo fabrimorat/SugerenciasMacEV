@@ -12,12 +12,12 @@ namespace SugerenciasMacEV.Controllers
 
         public HomeController(ISugerenciaService sugerenciaService)
         {
-            _sugerenciaService = sugerenciaService;
+            _sugerenciaService = sugerenciaService; // Inyección de dependencias en el constructor
         }
 
         public IActionResult IngresarDatos()
         {
-            var modelos = _sugerenciaService.ObtenerMotosEnStock();
+            var modelos = _sugerenciaService.ObtenerMotosEnStock(); // Uso de la dependencia inyectada
             return View(modelos);
         }
 
@@ -26,21 +26,22 @@ namespace SugerenciasMacEV.Controllers
 
         public IActionResult Index()
         {
-            var modelos = _sugerenciaService.ObtenerMotosEnStock();
+            var modelos = _sugerenciaService.ObtenerMotosEnStock(); // Uso de la dependencia inyectada
             return View(modelos);
         }
 
         [HttpPost]
         public IActionResult Sugerir(double recorridoDiario, double pesoNecesitado, int modeloId)
         {
-            var mejorSugerencia = _sugerenciaService.ObtenerMejorSugerencia(recorridoDiario, pesoNecesitado, modeloId);
+            var mejorSugerencia = _sugerenciaService.ObtenerMejorSugerencia(recorridoDiario, pesoNecesitado, modeloId);  // Uso de la dependencia inyectada
+
             return View(mejorSugerencia);
         }
 
         [HttpGet]
         public IActionResult MostrarInformes(DateTime fechaInicio, DateTime fechaFin)
         {
-            var informes = _sugerenciaService.ObtenerInformesPorRangoDeFechas(fechaInicio, fechaFin);
+            var informes = _sugerenciaService.ObtenerInformesPorRangoDeFechas(fechaInicio, fechaFin);  // Uso de la dependencia inyectada
             return View("MostrarReportes", informes);
         }
 
@@ -49,13 +50,13 @@ namespace SugerenciasMacEV.Controllers
         {
             try
             {
-                _sugerenciaService.AgregarInforme(informe);
+                _sugerenciaService.AgregarInforme(informe);  // Uso de la dependencia inyectada
                 return RedirectToAction("Index");
             }
             catch (ArgumentException ex)
             {
                 ModelState.AddModelError("", ex.Message);
-                var modelos = _sugerenciaService.ObtenerMotosEnStock();
+                var modelos = _sugerenciaService.ObtenerMotosEnStock();  // Uso de la dependencia inyectada
                 ViewBag.Modelos = modelos;
                 return View("IngresarDatos");
             }

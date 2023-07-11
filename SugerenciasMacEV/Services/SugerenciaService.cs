@@ -34,6 +34,11 @@ namespace SugerenciasMacEV.Services
             return _context.Modelos.ToList();
         }
 
+        public List<Informe> ObtenerInformesEnStock()
+        {
+            return _context.Informes.ToList();
+        }
+
         public Modelo ObtenerMejorSugerencia(double recorridoDiario, double pesoNecesitado, int modeloId)
         {
             var motosFiltradas = _context.Modelos
